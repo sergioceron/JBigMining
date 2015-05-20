@@ -1,11 +1,18 @@
 package core;
 
+import java.util.List;
+
 /**
  * Created by sergio on 15/05/15.
  */
 public class FeatureDescription {
     private String name;
     private Type type;
+    private List<String> values;
+
+    public FeatureDescription(String name) {
+        this.name = name;
+    }
 
     public FeatureDescription(String name, Type type) {
         this.name = name;
@@ -28,11 +35,25 @@ public class FeatureDescription {
         this.type = type;
     }
 
+    public List<String> getValues() {
+        return values;
+    }
+
+    public void setValues(List<String> values) {
+        this.values = values;
+    }
+
+    public void putValue(String value){
+        if(!values.contains(value))
+            values.add(value);
+    }
+
     public enum Type {
         NOMINAL,
         BOOLEAN,
         ORDINAL,
         REAL,
-        INTEGER
+        INTEGER,
+        NUMERIC
     }
 }

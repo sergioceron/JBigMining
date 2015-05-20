@@ -15,6 +15,7 @@ public class PRObject implements Cloneable, Comparable<PRObject> {
 
     public PRObject(MetaObject metaObject) {
         this.metaObject = metaObject;
+        this.featuresValues = new Object[metaObject.getFeatureDescriptions().length];
     }
 
 

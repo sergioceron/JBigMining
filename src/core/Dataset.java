@@ -7,8 +7,14 @@ import java.util.Collection;
  * Created by sergio on 15/05/15.
  */
 public class Dataset extends ArrayList<PRObject> implements Cloneable {
+    private String name;
     private MetaObject metaObject;
     private double[][] dissimilarityMatrix;
+
+    public Dataset(String name, MetaObject metaObject) {
+        this.name = name;
+        this.metaObject = metaObject;
+    }
 
     public Dataset(MetaObject metaObject) {
         this.metaObject = metaObject;
@@ -22,6 +28,14 @@ public class Dataset extends ArrayList<PRObject> implements Cloneable {
     public Dataset(int initialCapacity, MetaObject metaObject) {
         super(initialCapacity);
         this.metaObject = metaObject;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int find(PRObject query) {
