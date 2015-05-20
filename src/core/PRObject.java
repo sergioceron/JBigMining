@@ -13,20 +13,20 @@ public class PRObject implements Cloneable, Comparable<PRObject> {
     private int index;
     private double order;
 
-    public PRObject(MetaObject metaObject) {
+    public PRObject( MetaObject metaObject ) {
         this.metaObject = metaObject;
         this.featuresValues = new Object[metaObject.getFeatureDescriptions().length];
     }
 
 
-    public boolean isIncomplete(int thisFeature) {
-        return (featuresValues[thisFeature] == null) ? true : false;
+    public boolean isIncomplete( int thisFeature ) {
+        return ( featuresValues[thisFeature] == null ) ? true : false;
     }
 
     @Override
     public PRObject clone() throws CloneNotSupportedException {
-        PRObject theClone = new PRObject(metaObject);
-        for (int i = 0; i < featuresValues.length; i++) {
+        PRObject theClone = new PRObject( metaObject );
+        for( int i = 0; i < featuresValues.length; i++ ) {
             theClone.featuresValues[i] = featuresValues[i];
         }
         theClone.index = index;
@@ -35,42 +35,42 @@ public class PRObject implements Cloneable, Comparable<PRObject> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals( Object o ) {
+        if( this == o ) return true;
+        if( o == null || getClass() != o.getClass() ) return false;
 
         PRObject prObject = (PRObject) o;
 
-        if (classLabel != null ? !classLabel.equals(prObject.classLabel) : prObject.classLabel != null) return false;
+        if( classLabel != null ? !classLabel.equals( prObject.classLabel ) : prObject.classLabel != null ) return false;
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        return Arrays.equals(featuresValues, prObject.featuresValues);
+        return Arrays.equals( featuresValues, prObject.featuresValues );
 
     }
 
-    public boolean equalsInFeatures(PRObject prObject) {
+    public boolean equalsInFeatures( PRObject prObject ) {
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        return Arrays.equals(featuresValues, prObject.featuresValues);
+        return Arrays.equals( featuresValues, prObject.featuresValues );
 
     }
 
     @Override
     public String toString() {
         return "core.PRObject{" +
-                "featuresValues=" + Arrays.toString(featuresValues) +
+                "featuresValues=" + Arrays.toString( featuresValues ) +
                 ", classLabel='" + classLabel + '\'' +
                 '}';
     }
 
     @Override
     public int hashCode() {
-        return featuresValues != null ? Arrays.hashCode(featuresValues) : 0;
+        return featuresValues != null ? Arrays.hashCode( featuresValues ) : 0;
     }
 
     @Override
-    public int compareTo(PRObject o) {
-        if (this.order > o.getOrder())
+    public int compareTo( PRObject o ) {
+        if( this.order > o.getOrder() )
             return -1;
-        else if (this.order == o.getOrder())
+        else if( this.order == o.getOrder() )
             return 0;
         else return 1;
     }
@@ -79,7 +79,7 @@ public class PRObject implements Cloneable, Comparable<PRObject> {
         return metaObject;
     }
 
-    public void setMetaObject(MetaObject metaObject) {
+    public void setMetaObject( MetaObject metaObject ) {
         this.metaObject = metaObject;
     }
 
@@ -87,7 +87,7 @@ public class PRObject implements Cloneable, Comparable<PRObject> {
         return classLabel;
     }
 
-    public void setClassLabel(String classLabel) {
+    public void setClassLabel( String classLabel ) {
         this.classLabel = classLabel;
     }
 
@@ -95,7 +95,7 @@ public class PRObject implements Cloneable, Comparable<PRObject> {
         return groupLabel;
     }
 
-    public void setGroupLabel(String groupLabel) {
+    public void setGroupLabel( String groupLabel ) {
         this.groupLabel = groupLabel;
     }
 
@@ -103,7 +103,7 @@ public class PRObject implements Cloneable, Comparable<PRObject> {
         return featuresValues;
     }
 
-    public void setFeaturesValues(Object[] featuresValues) {
+    public void setFeaturesValues( Object[] featuresValues ) {
         this.featuresValues = featuresValues;
     }
 
@@ -111,7 +111,7 @@ public class PRObject implements Cloneable, Comparable<PRObject> {
         return index;
     }
 
-    public void setIndex(int index) {
+    public void setIndex( int index ) {
         this.index = index;
     }
 
@@ -119,7 +119,7 @@ public class PRObject implements Cloneable, Comparable<PRObject> {
         return order;
     }
 
-    public void setOrder(double order) {
+    public void setOrder( double order ) {
         this.order = order;
     }
 }

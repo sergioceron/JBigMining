@@ -10,11 +10,11 @@ public class FeatureDescription {
     private Type type;
     private List<String> values;
 
-    public FeatureDescription(String name) {
+    public FeatureDescription( String name ) {
         this.name = name;
     }
 
-    public FeatureDescription(String name, Type type) {
+    public FeatureDescription( String name, Type type ) {
         this.name = name;
         this.type = type;
     }
@@ -23,7 +23,7 @@ public class FeatureDescription {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName( String name ) {
         this.name = name;
     }
 
@@ -31,7 +31,7 @@ public class FeatureDescription {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType( Type type ) {
         this.type = type;
     }
 
@@ -39,13 +39,13 @@ public class FeatureDescription {
         return values;
     }
 
-    public void setValues(List<String> values) {
+    public void setValues( List<String> values ) {
         this.values = values;
     }
 
-    public void putValue(String value){
-        if(!values.contains(value))
-            values.add(value);
+    public void putValue( String value ) {
+        if( !values.contains( value ) )
+            values.add( value );
     }
 
     public enum Type {

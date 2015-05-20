@@ -8,19 +8,19 @@ import java.util.ArrayList;
 public class Structure extends ArrayList<Structure.Item> {
 
 
-    public Structure.Item add(Object descriptor, Dataset dataset) {
+    public Structure.Item add( Object descriptor, Dataset dataset ) {
         Structure.Item item = new Structure.Item();
-        item.setDescriptor(descriptor);
-        item.setDataset(dataset);
-        super.add(item);
+        item.setDescriptor( descriptor );
+        item.setDataset( dataset );
+        super.add( item );
         return item;
     }
 
     public void removeNull() {
         int i = 0;
-        while (i < size()) {
-            if (this.get(i).getDataset() == null)
-                remove(i);
+        while( i < size() ) {
+            if( this.get( i ).getDataset() == null )
+                remove( i );
             else
                 i++;
         }
@@ -33,8 +33,8 @@ public class Structure extends ArrayList<Structure.Item> {
         @Override
         protected Object clone() throws CloneNotSupportedException {
             Structure.Item si = new Structure.Item();
-            si.setDescriptor(this.descriptor);
-            si.setDataset(this.dataset.clone());
+            si.setDescriptor( this.descriptor );
+            si.setDataset( this.dataset.clone() );
             return si;
         }
 
@@ -42,7 +42,7 @@ public class Structure extends ArrayList<Structure.Item> {
             return descriptor;
         }
 
-        public void setDescriptor(Object descriptor) {
+        public void setDescriptor( Object descriptor ) {
             this.descriptor = descriptor;
         }
 
@@ -50,7 +50,7 @@ public class Structure extends ArrayList<Structure.Item> {
             return dataset;
         }
 
-        public void setDataset(Dataset dataset) {
+        public void setDataset( Dataset dataset ) {
             this.dataset = dataset;
         }
     }

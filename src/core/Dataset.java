@@ -11,22 +11,22 @@ public class Dataset extends ArrayList<PRObject> implements Cloneable {
     private MetaObject metaObject;
     private double[][] dissimilarityMatrix;
 
-    public Dataset(String name, MetaObject metaObject) {
+    public Dataset( String name, MetaObject metaObject ) {
         this.name = name;
         this.metaObject = metaObject;
     }
 
-    public Dataset(MetaObject metaObject) {
+    public Dataset( MetaObject metaObject ) {
         this.metaObject = metaObject;
     }
 
-    public Dataset(Collection<? extends PRObject> c, MetaObject metaObject) {
-        super(c);
+    public Dataset( Collection<? extends PRObject> c, MetaObject metaObject ) {
+        super( c );
         this.metaObject = metaObject;
     }
 
-    public Dataset(int initialCapacity, MetaObject metaObject) {
-        super(initialCapacity);
+    public Dataset( int initialCapacity, MetaObject metaObject ) {
+        super( initialCapacity );
         this.metaObject = metaObject;
     }
 
@@ -34,25 +34,25 @@ public class Dataset extends ArrayList<PRObject> implements Cloneable {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName( String name ) {
         this.name = name;
     }
 
-    public int find(PRObject query) {
+    public int find( PRObject query ) {
         int found = -1;
         int i = 0;
-        while ((i < size()) && (found == -1)) {
+        while( ( i < size() ) && ( found == -1 ) ) {
             boolean equal = true;
-            if (query.getClassLabel() == this.get(i).getClassLabel()) {
+            if( query.getClassLabel() == this.get( i ).getClassLabel() ) {
                 int j = 0;
-                while (equal && (j < query.getFeaturesValues().length)) {
-                    if (query.getFeaturesValues()[j].toString() == this.get(i).getFeaturesValues()[j].toString())
+                while( equal && ( j < query.getFeaturesValues().length ) ) {
+                    if( query.getFeaturesValues()[j].toString() == this.get( i ).getFeaturesValues()[j].toString() )
                         equal = false;
                     j++;
                 }
             } else
                 equal = false;
-            if (equal)
+            if( equal )
                 found = i;
             i++;
         }
@@ -61,24 +61,24 @@ public class Dataset extends ArrayList<PRObject> implements Cloneable {
 
     @Override
     public Dataset clone() {
-        Dataset theClone = new Dataset(size(), metaObject);
-        for (PRObject obj : this)
-            theClone.add(obj);
+        Dataset theClone = new Dataset( size(), metaObject );
+        for( PRObject obj : this )
+            theClone.add( obj );
         return theClone;
     }
 
     public Dataset cloneDeep() throws CloneNotSupportedException {
-        Dataset theClone = new Dataset(size(), metaObject);
+        Dataset theClone = new Dataset( size(), metaObject );
         FeatureDescription[] desc = new FeatureDescription[metaObject.getFeatureDescriptions().length];
-        for (int i = 0; i < desc.length; i++) {
-            FeatureDescription current = new FeatureDescription(metaObject.getFeatureDescriptions()[i].getName(),
-                    metaObject.getFeatureDescriptions()[i].getType());
+        for( int i = 0; i < desc.length; i++ ) {
+            FeatureDescription current = new FeatureDescription( metaObject.getFeatureDescriptions()[i].getName(),
+                    metaObject.getFeatureDescriptions()[i].getType() );
             desc[i] = current;
         }
-        MetaObject meta = new MetaObject(desc);
-        meta.setDissimilarity(this.metaObject.getDissimilarity());
-        for (PRObject obj : this)
-            theClone.add(obj.clone());
+        MetaObject meta = new MetaObject( desc );
+        meta.setDissimilarity( this.metaObject.getDissimilarity() );
+        for( PRObject obj : this )
+            theClone.add( obj.clone() );
         return theClone;
     }
 
@@ -86,7 +86,7 @@ public class Dataset extends ArrayList<PRObject> implements Cloneable {
         return metaObject;
     }
 
-    public void setMetaObject(MetaObject metaObject) {
+    public void setMetaObject( MetaObject metaObject ) {
         this.metaObject = metaObject;
     }
 
@@ -94,7 +94,7 @@ public class Dataset extends ArrayList<PRObject> implements Cloneable {
         return dissimilarityMatrix;
     }
 
-    public void setDissimilarityMatrix(double[][] dissimilarityMatrix) {
+    public void setDissimilarityMatrix( double[][] dissimilarityMatrix ) {
         this.dissimilarityMatrix = dissimilarityMatrix;
     }
 }

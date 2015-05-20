@@ -40,5 +40,5 @@ import core.Dataset;
  * @date 3/11/13 05:41 PM
  */
 public interface IParser {
-	Dataset parse(String file);
+    Dataset parse( String file );
 }

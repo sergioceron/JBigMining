@@ -11,9 +11,9 @@ public class MetaObject {
     private ISimilarity<PRObject> similarity;
     private IDissimilarity<PRObject> dissimilarity;
 
-    public MetaObject(FeatureDescription[] featureDescriptions) {
-        if (featureDescriptions == null)
-            throw new NullPointerException("Unable to create a core.MetaObject from a null core.FeatureDescription array.");
+    public MetaObject( FeatureDescription[] featureDescriptions ) {
+        if( featureDescriptions == null )
+            throw new NullPointerException( "Unable to create a core.MetaObject from a null core.FeatureDescription array." );
         this.featureDescriptions = featureDescriptions;
     }
 
@@ -21,7 +21,7 @@ public class MetaObject {
         return featureDescriptions;
     }
 
-    public void setFeatureDescriptions(FeatureDescription[] featureDescriptions) {
+    public void setFeatureDescriptions( FeatureDescription[] featureDescriptions ) {
         this.featureDescriptions = featureDescriptions;
     }
 
@@ -29,7 +29,7 @@ public class MetaObject {
         return similarity;
     }
 
-    public void setSimilarity(ISimilarity<PRObject> similarity) {
+    public void setSimilarity( ISimilarity<PRObject> similarity ) {
         this.similarity = similarity;
     }
 
@@ -37,7 +37,7 @@ public class MetaObject {
         return dissimilarity;
     }
 
-    public void setDissimilarity(IDissimilarity<PRObject> dissimilarity) {
+    public void setDissimilarity( IDissimilarity<PRObject> dissimilarity ) {
         this.dissimilarity = dissimilarity;
     }
 }

@@ -17,20 +17,20 @@ public class SubclassSampler implements ISampler {
 
     private IClusterer clusteringAlgorithm;
 
-    public void makeSampling(Dataset dataset, Dataset training, Dataset testing) {
-        training = new Dataset(dataset.getMetaObject());
-        testing = new Dataset(dataset.getMetaObject());
+    public void makeSampling( Dataset dataset, Dataset training, Dataset testing ) {
+        training = new Dataset( dataset.getMetaObject() );
+        testing = new Dataset( dataset.getMetaObject() );
 
-        Structure classes = StructByClasses.structuralize(dataset);
-        for (Structure.Item c : classes) {
-            Structure currentSubClasses = clusteringAlgorithm.findClusters(c.getDataset());
-            for (Structure.Item sc : currentSubClasses)
-                if (sc.getDataset().size() > 1) {
-                    int objCount = (int) Math.round((1 - trainingRatio) * sc.getDataset().size());
-                    Dataset objs = DatasetUtils.randomSample(sc.getDataset(), objCount);
-                    sc.getDataset().remove(objs);
-                    training.addAll(sc.getDataset());
-                    testing.addAll(objs);
+        Structure classes = StructByClasses.structuralize( dataset );
+        for( Structure.Item c : classes ) {
+            Structure currentSubClasses = clusteringAlgorithm.findClusters( c.getDataset() );
+            for( Structure.Item sc : currentSubClasses )
+                if( sc.getDataset().size() > 1 ) {
+                    int objCount = (int) Math.round( ( 1 - trainingRatio ) * sc.getDataset().size() );
+                    Dataset objs = DatasetUtils.randomSample( sc.getDataset(), objCount );
+                    sc.getDataset().remove( objs );
+                    training.addAll( sc.getDataset() );
+                    testing.addAll( objs );
                 }
 
         }
@@ -45,18 +45,18 @@ public class SubclassSampler implements ISampler {
         return trainingRatio;
     }
 
-    public void setTrainingRatio(double trainingRatio) throws ArgumentOutOfRangeException {
-        if (trainingRatio > 0 && trainingRatio < 1)
+    public void setTrainingRatio( double trainingRatio ) throws ArgumentOutOfRangeException {
+        if( trainingRatio > 0 && trainingRatio < 1 )
             this.trainingRatio = trainingRatio;
         else
-            throw new ArgumentOutOfRangeException("value", trainingRatio, "Unable to set training ratio: Value out of range (0,1)");
+            throw new ArgumentOutOfRangeException( "value", trainingRatio, "Unable to set training ratio: Value out of range (0,1)" );
     }
 
     public IClusterer getClusteringAlgorithm() {
         return clusteringAlgorithm;
     }
 
-    public void setClusteringAlgorithm(IClusterer clusteringAlgorithm) {
+    public void setClusteringAlgorithm( IClusterer clusteringAlgorithm ) {
         this.clusteringAlgorithm = clusteringAlgorithm;
     }
 }

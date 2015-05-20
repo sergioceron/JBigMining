@@ -19,33 +19,33 @@ public class RandomSampler implements ISampler {
     private double trainingRatio;
     private Random rand;
 
-    public void makeSampling(Dataset dataset, Dataset training, Dataset testing) {
-        if (rand == null) {
-            if (seed == -1)
+    public void makeSampling( Dataset dataset, Dataset training, Dataset testing ) {
+        if( rand == null ) {
+            if( seed == -1 )
                 rand = new Random();
             else
-                rand = new Random(seed);
+                rand = new Random( seed );
         }
-        training = new Dataset(dataset.getMetaObject());
-        testing = new Dataset(dataset.getMetaObject());
-        for (PRObject obj : dataset) {
-            if (rand.nextDouble() < trainingRatio)
-                training.add(obj);
+        training = new Dataset( dataset.getMetaObject() );
+        testing = new Dataset( dataset.getMetaObject() );
+        for( PRObject obj : dataset ) {
+            if( rand.nextDouble() < trainingRatio )
+                training.add( obj );
             else
-                testing.add(obj);
+                testing.add( obj );
         }
     }
 
-    public List<Dataset> makeSampling(Dataset dataset, int samples) {
-        List<Dataset> sampledDatasets = new ArrayList<Dataset>(samples);
+    public List<Dataset> makeSampling( Dataset dataset, int samples ) {
+        List<Dataset> sampledDatasets = new ArrayList<Dataset>( samples );
         int i;
-        for (i = 0; i < samples; i++)
-            sampledDatasets.add(new Dataset(dataset.getMetaObject()));
-        Dataset unordered = Permuter.getPermuted(dataset);
-        for (i = 0; i < unordered.size(); i++) {
+        for( i = 0; i < samples; i++ )
+            sampledDatasets.add( new Dataset( dataset.getMetaObject() ) );
+        Dataset unordered = Permuter.getPermuted( dataset );
+        for( i = 0; i < unordered.size(); i++ ) {
             // Errrrrooooooorrrrr
             int idx = i - i / samples * samples;
-            sampledDatasets.get(idx).add(unordered.get(i));
+            sampledDatasets.get( idx ).add( unordered.get( i ) );
         }
         return sampledDatasets;
     }
@@ -54,7 +54,7 @@ public class RandomSampler implements ISampler {
         return seed;
     }
 
-    public void setSeed(int seed) {
+    public void setSeed( int seed ) {
         this.seed = seed;
     }
 
@@ -62,11 +62,11 @@ public class RandomSampler implements ISampler {
         return trainingRatio;
     }
 
-    public void setTrainingRatio(double trainingRatio) throws ArgumentOutOfRangeException {
-        if (trainingRatio >= 0 && trainingRatio <= 1)
+    public void setTrainingRatio( double trainingRatio ) throws ArgumentOutOfRangeException {
+        if( trainingRatio >= 0 && trainingRatio <= 1 )
             this.trainingRatio = trainingRatio;
         else
-            throw new ArgumentOutOfRangeException("TrainingRatio must be a number between 0 and 1");
+            throw new ArgumentOutOfRangeException( "TrainingRatio must be a number between 0 and 1" );
     }
 
 }
